@@ -41,10 +41,6 @@ public class parseTest {
 				break;	//break out of loop since previous loop already grabs the last name
 			}
 		}
-//		System.out.println("\n" + tempLine);
-//		System.out.println(fName);
-//		System.out.println(lName);
-		
 		return fName + ", " + lName;
 	}
 	
