@@ -10,6 +10,9 @@ public class AutoClickFast {
 	static final Color cGray = new Color(224, 224, 224);
 	static final Color cLoading = new Color(0, 89, 201);
 	static final Color cTeal = new Color(14, 160, 202);
+	static final Color cWhite = new Color(255, 255, 255);
+	static final Color cCheck1 = new Color(228, 231, 234);
+	static final Color cCheck2 = new Color(243, 243, 243);
 	
 	public static void main(String arge[]) throws AWTException, InterruptedException {
 		Robot r = new Robot();
@@ -30,11 +33,35 @@ public class AutoClickFast {
 			}
 			
 			if (colorCheck(cGray)) {
-				r.mouseMove(1580, 750);
+				r.mouseMove(1625, 740);
 				mouseClick();
+				
+				boolean doneLoading = false;
+				while (true) {			
+					if (colorCheck(cLoading)) {
+						doneLoading = true;
+					}
+					if (doneLoading && (colorCheck(cWhite) ||
+							colorCheck(cCheck1) ||
+							colorCheck(cCheck2))) {
+						break;
+					}
+				}
+				
+				moveClick(1860, 290);	//post
+				moveClick(1300, 630);	//yes
+				moveClick(1470, 640);	//ok
+				
 				break;
 			}
 		}
+	}
+	
+	private static void moveClick(int xpos, int ypos) throws InterruptedException, AWTException {
+		initRobot();
+		Thread.sleep(300);
+		r.mouseMove(xpos, ypos);
+		mouseClick();
 	}
 	
 	private static void mouseClick() throws AWTException, InterruptedException{
@@ -69,4 +96,6 @@ public class AutoClickFast {
 	public static int mLocY(){
 		return MouseInfo.getPointerInfo().getLocation().y;
 	}
+
+	
 }
