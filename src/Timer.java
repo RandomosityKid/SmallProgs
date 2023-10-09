@@ -37,7 +37,7 @@ public class Timer extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PHP", "GDP", "USD" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PHP", "GBP", "USD" }));
 
         btn_start.setText("Start");
         btn_start.addActionListener(new java.awt.event.ActionListener() {
@@ -180,7 +180,7 @@ public class Timer extends javax.swing.JFrame {
 		switch (jComboBox1.getSelectedItem().toString()) {
 			case "PHP":
 				return rate * PHPRate;
-			case "GDP":
+			case "GBP":
 				return rate * GDPRate;
 			case "USD":
 				return rate;
