@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.MouseInfo;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
-
+ 
 public class AutoClickFast {
 	static Robot r;
 	static final Color cGray = new Color(224, 224, 224);
@@ -13,16 +13,19 @@ public class AutoClickFast {
 	static final Color cWhite = new Color(255, 255, 255);
 	static final Color cCheck1 = new Color(228, 231, 234);
 	static final Color cCheck2 = new Color(243, 243, 243);
+	static final Color cCheck3 = new Color(110, 110, 110); //scroll bar
+	static final Color cCheck4 = new Color(176, 190, 217); //grey selected highlight
 	
 	public static void main(String arge[]) throws AWTException, InterruptedException {
-		Robot r = new Robot();
-		Thread t = null;
+		r = new Robot();
 		
-		while (true) {		
-			boolean midway = false;
+		while (true) {	
+			if (colorCheck(cGray)) {
+				break;
+			}
 			
 			mouseClick();
-			
+			boolean midway = false;
 			while (true) {			
 				if (colorCheck(cLoading)) {
 					midway = true;
@@ -31,35 +34,34 @@ public class AutoClickFast {
 					break;
 				}
 			}
-			
-			if (colorCheck(cGray)) {
-				r.mouseMove(1625, 740);
-				mouseClick();
-				
-				boolean doneLoading = false;
-				while (true) {			
-					if (colorCheck(cLoading)) {
-						doneLoading = true;
-					}
-					if (doneLoading && (colorCheck(cWhite) ||
-							colorCheck(cCheck1) ||
-							colorCheck(cCheck2))) {
-						break;
-					}
-				}
-				
-				moveClick(1860, 290);	//post
-				moveClick(1300, 630);	//yes
-				moveClick(1470, 640);	//ok
-				
+		}
+
+		int mouseY = mLocY();
+		r.mouseMove(1625, mouseY);
+		mouseClick();
+
+		boolean doneLoading = false;
+		while (true) {			
+			if (colorCheck(cLoading)) {
+				doneLoading = true;
+			}
+			if (doneLoading && (colorCheck(cWhite) ||
+					colorCheck(cCheck1) ||
+					colorCheck(cCheck2) ||
+					colorCheck(cCheck3) ||
+					colorCheck(cCheck4))) {
 				break;
 			}
 		}
+
+		moveClick(1860, 290);	//post
+		moveClick(1300, 630);	//yes
+		moveClick(1470, 640);	//ok
 	}
 	
 	private static void moveClick(int xpos, int ypos) throws InterruptedException, AWTException {
 		initRobot();
-		Thread.sleep(300);
+		Thread.sleep(200);
 		r.mouseMove(xpos, ypos);
 		mouseClick();
 	}
