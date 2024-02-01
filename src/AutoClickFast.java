@@ -19,8 +19,11 @@ public class AutoClickFast {
 	public static void main(String arge[]) throws AWTException, InterruptedException {
 		r = new Robot();
 		
+		r.mouseMove(1440, 800);
+		int vagueGray = r.getPixelColor(mLocX(), mLocY()).getRed();
 		while (true) {	
-			if (colorCheck(cGray)) {
+			if (colorCheck(cGray) ||
+					(vagueGray > 210 && vagueGray < 225)) {
 				break;
 			}
 			
