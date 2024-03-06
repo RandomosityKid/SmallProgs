@@ -11,7 +11,7 @@ public class Timer extends javax.swing.JFrame {
 	static boolean state = true;
 	static double PHPRate = 55.56;
 	static double GDPRate = 0.81;
-	static double sal = 21;
+	static double sal = 25;
 	static LocalTime tNow;
 	static LocalTime rTime;
 
