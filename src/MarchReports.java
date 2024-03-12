@@ -17,15 +17,16 @@ public class MarchReports {
 			mClick();
 			enter();
 			if (i == 4) {
-				wait(50);
+				wait(100);
 				break;
 			}
 			wait(200);
 		}
+		wait(350);
 		closeWindow();
-		wait(250);
+		wait(200);
 		closeWindow();
-		wait(250);
+		wait(200);
 		closeWindow();
 	}
 	
@@ -57,7 +58,7 @@ public class MarchReports {
 	
 	private static void enter() throws AWTException, InterruptedException{
 		initRobot();
-		wait(750);
+		wait(800);
 		r.keyPress(KeyEvent.VK_ENTER);
 		r.keyRelease(KeyEvent.VK_ENTER);
 	}
