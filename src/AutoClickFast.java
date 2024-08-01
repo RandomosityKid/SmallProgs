@@ -19,7 +19,7 @@ public class AutoClickFast {
 	public static void main(String arge[]) throws AWTException, InterruptedException {
 		r = new Robot();
 		
-		r.mouseMove(1440, 800);
+		r.mouseMove(1440, 780);
 		int vagueGray = r.getPixelColor(mLocX(), mLocY()).getRed();
 		while (true) {	
 			if (colorCheck(cGray) ||
@@ -40,7 +40,7 @@ public class AutoClickFast {
 		}
 
 		int mouseY = mLocY();
-		r.mouseMove(1625, mouseY);
+		r.mouseMove(1620, mouseY);
 		mouseClick();
 
 		boolean doneLoading = false;
@@ -57,9 +57,10 @@ public class AutoClickFast {
 			}
 		}
 
-		moveClick(1860, 290);	//post
-		moveClick(1300, 630);	//yes
-		moveClick(1470, 640);	//ok
+		moveClick(1860, 260);	//post
+		moveClick(1300, 610);	//yes
+		moveClick(1470, 620);	//ok
+		moveClick(1470, 620);	//ok catch for other position
 	}
 	
 	private static void moveClick(int xpos, int ypos) throws InterruptedException, AWTException {
