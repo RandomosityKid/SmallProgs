@@ -1,2 +1,5 @@
 
 *.class
+/dist/
+/build
+/build/classes
