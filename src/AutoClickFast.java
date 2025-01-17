@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.MouseInfo;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
  
 public class AutoClickFast {
 	static Robot r;
@@ -15,6 +16,7 @@ public class AutoClickFast {
 	static final Color cCheck2 = new Color(243, 243, 243);
 	static final Color cCheck3 = new Color(110, 110, 110); //scroll bar
 	static final Color cCheck4 = new Color(176, 190, 217); //grey selected highlight
+	static final Color cAmtColor = new Color(0, 99, 224);
 	
 	public static void main(String arge[]) throws AWTException, InterruptedException {
 		r = new Robot();
@@ -61,6 +63,48 @@ public class AutoClickFast {
 		moveClick(1300, 610);	//yes
 		moveClick(1470, 620);	//ok
 		moveClick(1470, 620);	//ok catch for other position
+		
+		boolean endCopy = false;
+		if (endCopy) {
+		
+			//CopyAmount
+			r.mouseMove(1400, 510);
+			Thread.sleep(1500); /////////// ##### CHANGE TIME HERE, in milliseconds
+	//		System.out.println("mousemoved");
+			while (true){
+	//			System.out.println("checking color: " + getColor());
+				if (colorCheck(cAmtColor)){
+	//				System.out.println("blue present: " + getColor());
+					while (true) {			
+	//					System.out.println("checking blue done: " + getColor());
+	//					System.out.println("ColorCheck: " + !(colorCheck(cAmtColor) || colorCheck(cLoading)));
+						Thread.sleep(100);
+						if (!(colorCheck(cAmtColor) || colorCheck(cLoading))){
+	//						System.out.println("cAmtColor: " + colorCheck(cAmtColor));
+	//						System.out.println("cLoading: " + colorCheck(cLoading));
+	//						System.out.println("no more blue: " + getColor());
+	//						Thread.sleep(2000);
+							break;
+						}
+					}
+					break;
+				}
+			}
+
+	//		System.out.println("highlight");
+			//Hightlight
+			r.mouseMove(1320, 400);
+			r.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+			r.mouseMove(1400, 415);
+			r.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+
+	//		System.out.println("copy");
+			//Copy
+			r.keyPress(KeyEvent.VK_CONTROL);
+			r.keyPress(KeyEvent.VK_C);
+			r.keyRelease(KeyEvent.VK_C);
+			r.keyRelease(KeyEvent.VK_CONTROL);
+		}
 	}
 	
 	private static void moveClick(int xpos, int ypos) throws InterruptedException, AWTException {
